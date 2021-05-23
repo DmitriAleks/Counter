@@ -3,37 +3,43 @@ import './Counter.css';
 import Table from "./Table/Table";
 import ButtonTest from "./Buttons/ButtonTest";
 
+type CounterType ={
+    startValue:number
+    limitValue:number
+    valueSettings:number
+}
 
-function App() {
-    let [numberTable, setNumberTable]=useState<number>(0)
+function Counter(props:CounterType) {
+    let [numberTable, setNumberTable]=useState<number>(props.startValue)
     let [statusInc, setNewStatusInc]=useState<boolean>(false)
     let [statusReset, setNewStatusReset]=useState<boolean>(false)
 function addPlusNumber() {
        numberTable++;
-       if(numberTable>=6){
-           return numberTable = 5
+       if(numberTable>=props.limitValue){//сравниваем наше число с максимальным позволеным
+           return numberTable = props.limitValue//если фолс то стопит на максимальном числе
        }
-    setNumberTable(numberTable)
-    statusButtonInc(numberTable);
-    statusButtonReset(numberTable)
+    setNumberTable(numberTable)//++1
+    statusButtonInc(numberTable);//проверка на дизейбл, если число равно максим, кнопка дизейблится
+    statusButtonReset(numberTable)//снимаем дизейбл, если раньше нажали reset
     console.log('Я добавляю')
 }
 function updateNumber() {
-    setNumberTable(0)
-    statusButtonInc(0);
-    statusButtonReset(0)
+    setNumberTable(props.startValue)//сбрасывание стейта на минимальное значение
+    statusButtonInc(props.startValue);//сбрасываем дизейбл с дабавлния
+    statusButtonReset(props.startValue)//дизейблим кнопку
     console.log('Я удаляю')
 
 }
 function statusButtonInc(numberTable:number)  {
-    if (numberTable === 5) {
+    if (numberTable === props.valueSettings ) {//проверка на дизейбл, если число равно максим, кнопка дизейблится
+
         return setNewStatusInc(true)
     } else  {
         return setNewStatusInc(false )
     }
 }
     function statusButtonReset(numberTable:number)  {
-        if (numberTable === 0) {
+        if (numberTable === props.startValue) {//дизейблим кнопку, если число минимально
             return setNewStatusReset(true)
         } else  {
             return setNewStatusReset(false )
@@ -65,4 +71,4 @@ function statusButtonInc(numberTable:number)  {
     );
 }
 
-export default App;
+export default Counter;

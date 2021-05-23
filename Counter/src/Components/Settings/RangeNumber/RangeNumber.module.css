@@ -4,5 +4,6 @@
     display: inline-block;
 }
 .global input{
+    border-color: aqua;
     display: inline-block;
 }
