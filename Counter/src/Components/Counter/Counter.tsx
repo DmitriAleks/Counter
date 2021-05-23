@@ -43,7 +43,7 @@ function statusButtonInc(numberTable:number)  {
 
     return (
 
-        <div className="App">
+        <div >
             <div className="corps">
                 <div className='Table'>
                     <Table numberTable={numberTable}/>

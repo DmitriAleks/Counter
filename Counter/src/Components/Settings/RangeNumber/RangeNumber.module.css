@@ -1,0 +1,8 @@
+
+.global {
+    font-size: small;
+    display: inline-block;
+}
+.global input{
+    display: inline-block;
+}

@@ -1,0 +1,15 @@
+.App {
+    background-color: #3d3e8b;
+    width: 1500px;
+    height: 800px;
+    min-height: 10em;
+    display: table-cell;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+div {
+    display: inline-block;
+}
+
