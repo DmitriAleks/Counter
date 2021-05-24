@@ -8,11 +8,8 @@ type TypeButton = {
 }
 
 function ButtonReset(props: TypeButton) {
-
     const updateNumberCallback = ()=>{props.updateNumber()
-
     }
-
     return (
         (props.error) ? <div ><button
                 disabled={props.error}

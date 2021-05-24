@@ -9,13 +9,18 @@ addPlusNumber:()=> void
 }
 
 function ButtonInc(props: TypeButton) {
+    const addPlusNumberCallback = () => {
+        props.addPlusNumber()
+    }
     const errorDisable = props.error
     return(
-        (errorDisable) ? <div ><button
-                disabled={props.error} onClick={(e)=>props.addPlusNumber()}
-            >inc</button></div>
+        (errorDisable) ? <button
+                disabled={props.error}
+                onClick={addPlusNumberCallback}
+            >inc</button>
             :<button
-                disabled={props.statusInc} onClick={(e)=>props.addPlusNumber()}
+                disabled={props.statusInc} 
+                onClick={addPlusNumberCallback}
             >inc</button>
     )
 }

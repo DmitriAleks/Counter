@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import CounterTest from './Components/Counter/CounterTest';
 import Settings from "./Components/Settings/Settings";
@@ -6,7 +6,7 @@ import Settings from "./Components/Settings/Settings";
 
 function App() {
     let [valueSettings, setValueSettings] = useState<number>(11)//стартовые значения, обновляются с помощию функции
-    let [startValue, setStartValue] = useState<number>(4)//стартовые значения, обновляются с помощию функции
+    let [startValue, setStartValue] = useState<any>()//стартовые значения, обновляются с помощию функции
     const ChangeValue = (minNumber: string, maxNumber: string) => {//функция обновляющая, стартовые значения
         let getMaxValue = Number(maxNumber)//снизу идёт строка
         let getMinValue = Number(minNumber)//преобразуем в число
@@ -20,7 +20,7 @@ function App() {
     let [statusInc, setNewStatusInc] = useState<boolean>(false)//стейт в котором храним статус кнопки
     let [error, setError]=useState<boolean>(false)//булевый стейт, контролируем ошибки
     const controlError = (valueSettings:number,numberTable:number )=>{//функция контроля ошибки
-        if(valueSettings<numberTable){//если максимальное число меньше минимального возвращает в стейт с ерорам тру
+        if(valueSettings<=numberTable){//если максимальное число меньше минимального возвращает в стейт с ерорам тру
             setError(true)
             console.log('true error')
         } else {
@@ -28,9 +28,24 @@ function App() {
             console.log('false error')
         }
     }
+    ///...........................................LocalStorage......................//
+
+useEffect(()=>{
+    let valueAsString = localStorage.getItem('counterValue')
+    if(valueAsString) {
+        let newValue = JSON.parse(valueAsString)
+        setStartValue(newValue)
+    }
+}, [])
+
+    useEffect(()=>{
+        localStorage.setItem('counterValue', JSON.stringify(numberTable) )
+    }, [numberTable])
+
+    ///...........................................LocalStorage......................//
     function addPlusNumber() {//функция по увеличения числа в счетчике
         numberTable++;
-        setNumberTable(numberTable)//++1
+        setNumberTable(numberTable) //++1
         statusButtonInc(numberTable);//проверка на дизейбл, если число равно максим, кнопка дизейблится
         console.log(numberTable)
     }
