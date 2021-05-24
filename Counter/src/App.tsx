@@ -1,6 +1,7 @@
 import React , { useState }from 'react';
 import './App.css';
 import Counter from "./Components/Counter/Counter";
+import CounterTest from './Components/Counter/CounterTest';
 import Settings from "./Components/Settings/Settings";
 
 
@@ -15,12 +16,10 @@ function App() {
         setStartValue(getMinValue)
     }
 
-
-
     return (
         <div className="App">
            <Settings ChangeValue={ChangeValue}/>
-            <Counter startValue={startValue} limitValue={limitValue} valueSettings={valueSettings}/>
+            <CounterTest startValue={startValue} limitValue={limitValue} valueSettings={valueSettings}/>
 
         </div>
 

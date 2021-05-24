@@ -9,7 +9,7 @@ type CounterType ={
     valueSettings:number
 }
 
-function Counter(props:CounterType) {
+function CounterTest(props:CounterType) {
     let [numberTable, setNumberTable]=useState<number>(props.startValue)
     let [statusInc, setNewStatusInc]=useState<boolean>(false)
     let [statusReset, setNewStatusReset]=useState<boolean>(false)
@@ -68,4 +68,4 @@ function statusButtonInc(numberTable:number)  {
     );
 }
 
-export default Counter;
+export default CounterTest;

@@ -8,12 +8,11 @@ type TypeButton = {
 addPlusNumber:()=> void
     updateNumber:()=> void
     statusInc: boolean
-    statusReset:boolean
 }
 function ButtonTest(props: TypeButton) {
     return(<div className={s.button} >
       <ButtonInc addPlusNumber={props.addPlusNumber} statusInc={props.statusInc}/>
-        <ButtonReset updateNumber={props.updateNumber} statusReset={props.statusReset}/>
+        <ButtonReset updateNumber={props.updateNumber}/>
 
 </div>)
 }
