@@ -8,16 +8,18 @@ function App() {
     let [valueSettings, setValueSettings]=useState<number>(10)
     let [startValue, setStartValue]=useState<number>(4)
     let limitValue = valueSettings + 1
-    const ChangeValue=(minNumber:number,maxNumber:number)=>{
-        setValueSettings(maxNumber)
-        setStartValue(minNumber)
+    const ChangeValue=(minNumber:string,maxNumber:string)=>{
+        let getMaxValue = Number(maxNumber)
+        let getMinValue = Number(minNumber)
+        setValueSettings(getMaxValue)
+        setStartValue(getMinValue)
     }
 
 
 
     return (
         <div className="App">
-           <Settings />
+           <Settings ChangeValue={ChangeValue}/>
             <Counter startValue={startValue} limitValue={limitValue} valueSettings={valueSettings}/>
 
         </div>

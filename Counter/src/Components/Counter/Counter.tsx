@@ -45,8 +45,6 @@ function statusButtonInc(numberTable:number)  {
             return setNewStatusReset(false )
         }
     }
-
-
     return (
 
         <div >
