@@ -1,53 +1,31 @@
-import React , { useState }from 'react';
+import React, {useState} from 'react';
 import './Counter.css';
 import Table from "./Table/Table";
 import ButtonTest from "./Buttons/ButtonTest";
 
-type CounterType ={
-    startValue:number
-    limitValue:number
-    valueSettings:number
+type CounterType = {
+    numberTable: number
+    addPlusNumber: () => void
+    updateNumber: () => void
+    statusInc: boolean
+    valueSettings: number
 }
-/// a /// a //// a //// b///
-function CounterTest(props:CounterType) {
-    let [numberTable, setNumberTable]=useState<number>(props.startValue)
-    let [statusInc, setNewStatusInc]=useState<boolean>(false)
-function addPlusNumber() {
-       numberTable++;
-    setNumberTable(numberTable)//++1
-    statusButtonInc(numberTable);//проверка на дизейбл, если число равно максим, кнопка дизейблится
-    console.log('Я добавляю')
-}
-function updateNumber() {
-    setNumberTable(props.startValue)//сбрасывание стейта на минимальное значение
-    statusButtonInc(props.startValue);//сбрасываем дизейбл с дабавлния
-    console.log('Я удаляю')
 
-}
-function statusButtonInc(numberTable:number)  {
-    if (numberTable === props.valueSettings ) {//проверка на дизейбл, если число равно максим, кнопка дизейблится
-
-        return setNewStatusInc(true)
-    } else  {
-        return setNewStatusInc(false )
-    }
-}
+function CounterTest(props: CounterType) {
 
     return (
-
-        <div >
+        <div>
             <div className="corps">
                 <div className='Table'>
-                    <Table numberTable={numberTable}/>
-
+                    <Table numberTable={props.numberTable} valueSettings={props.valueSettings}/>
                 </div>
                 <div className='corpsTable'>
                     <div className='button'>
                         <ButtonTest
-                            addPlusNumber={addPlusNumber}
-                            updateNumber={updateNumber}
-                            statusInc={statusInc}
-                      />
+                            addPlusNumber={props.addPlusNumber}
+                            updateNumber={props.updateNumber}
+                            statusInc={props.statusInc}
+                        />
 
                     </div>
                 </div>
