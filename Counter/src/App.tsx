@@ -13,10 +13,21 @@ function App() {
         setValueSettings(getMaxValue)//переписываем максим стартовое число
         setNumberTable(getMinValue)//переписываем минимальное стартовое число
         setStartValue(getMinValue)//переписываем минимальное число которое отображается в счетчике
+        controlError(getMaxValue,getMinValue)//вызываем функцию проверки ошибки
     }
     ///..........................................................................
     let [numberTable, setNumberTable] = useState<number>(startValue)// стейт в котором храним отбражающее число в счетчике
     let [statusInc, setNewStatusInc] = useState<boolean>(false)//стейт в котором храним статус кнопки
+    let [error, setError]=useState<boolean>(false)//булевый стейт, контролируем ошибки
+    const controlError = (valueSettings:number,numberTable:number )=>{//функция контроля ошибки
+        if(valueSettings<numberTable){//если максимальное число меньше минимального возвращает в стейт с ерорам тру
+            setError(true)
+            console.log('true error')
+        } else {
+            setError(false)
+            console.log('false error')
+        }
+    }
     function addPlusNumber() {//функция по увеличения числа в счетчике
         numberTable++;
         setNumberTable(numberTable)//++1
@@ -47,6 +58,7 @@ function App() {
                 addPlusNumber={addPlusNumber}//кнопк добавления
                 updateNumber={updateNumber}//кнопка удаления
                 statusInc={statusInc}//статус кнпоки
+                error={error}// статус ошибки
             />
         </div>
     );

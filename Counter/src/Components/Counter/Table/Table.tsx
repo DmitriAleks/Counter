@@ -4,11 +4,11 @@ import s from './Table.module.css'
 type TypeTable = {
     numberTable: number
     valueSettings: number
+    error:boolean
 }
 
 function Table(props: TypeTable) {
-    let [error, setError] = useState<boolean>(true)
-    const errorMessage = error
+    const errorMessage = props.error
         ? <div style={{color: 'red'}}>Ошибка ввода</div>
         : null
 
