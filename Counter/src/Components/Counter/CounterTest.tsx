@@ -8,25 +8,19 @@ type CounterType ={
     limitValue:number
     valueSettings:number
 }
-
+/// a /// a //// a //// b///
 function CounterTest(props:CounterType) {
     let [numberTable, setNumberTable]=useState<number>(props.startValue)
     let [statusInc, setNewStatusInc]=useState<boolean>(false)
-    let [statusReset, setNewStatusReset]=useState<boolean>(false)
 function addPlusNumber() {
        numberTable++;
-       if(numberTable>=props.limitValue){//сравниваем наше число с максимальным позволеным
-           return numberTable = props.limitValue//если фолс то стопит на максимальном числе
-       }
     setNumberTable(numberTable)//++1
     statusButtonInc(numberTable);//проверка на дизейбл, если число равно максим, кнопка дизейблится
-    statusButtonReset(numberTable)//снимаем дизейбл, если раньше нажали reset
     console.log('Я добавляю')
 }
 function updateNumber() {
     setNumberTable(props.startValue)//сбрасывание стейта на минимальное значение
     statusButtonInc(props.startValue);//сбрасываем дизейбл с дабавлния
-    statusButtonReset(props.startValue)//дизейблим кнопку
     console.log('Я удаляю')
 
 }
@@ -38,13 +32,7 @@ function statusButtonInc(numberTable:number)  {
         return setNewStatusInc(false )
     }
 }
-    function statusButtonReset(numberTable:number)  {
-        if (numberTable === props.startValue) {//дизейблим кнопку, если число минимально
-            return setNewStatusReset(true)
-        } else  {
-            return setNewStatusReset(false )
-        }
-    }
+
     return (
 
         <div >
