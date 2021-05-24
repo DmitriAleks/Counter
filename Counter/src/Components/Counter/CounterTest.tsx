@@ -26,6 +26,7 @@ function CounterTest(props: CounterType) {
                             addPlusNumber={props.addPlusNumber}
                             updateNumber={props.updateNumber}
                             statusInc={props.statusInc}
+                            error={props.error}
                         />
 
                     </div>

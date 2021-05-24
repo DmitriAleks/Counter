@@ -13,12 +13,12 @@ function Table(props: TypeTable) {
         : null
 
     return (
-        (props.numberTable === props.valueSettings) ? <div className={s.table}>{props.numberTable}</div> :
-        <div>{props.numberTable}{errorMessage}
-        </div>)
+        (errorMessage) ? <div >{errorMessage}</div> :
+            <div className={props.numberTable===props.valueSettings ? s.table: ''}>{props.numberTable}
+            </div>
+    )
 
 }
-
 export default Table
 
 
