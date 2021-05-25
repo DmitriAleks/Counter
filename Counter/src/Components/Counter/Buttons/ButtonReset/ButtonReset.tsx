@@ -23,17 +23,3 @@ function ButtonReset(props: TypeButton) {
 
 export default ButtonReset
 
-// (errorDisable) ? <div ><button
-//         disabled={props.error} onClick={(e)=>props.addPlusNumber()}
-//     >inc</button></div>
-//     :<button
-//         disabled={props.statusInc} onClick={(e)=>props.addPlusNumber()}
-//     >inc</button>
-
-
-// (props.error) ? <div ><button  disabled={props.error}
-//             onClick={(e) => props.updateNumber()}> reset
-//         </button></div>
-//     :<button
-//             onClick={(e) => props.updateNumber()}> reset
-//         </button>

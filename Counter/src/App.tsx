@@ -30,17 +30,17 @@ function App() {
     }
     ///...........................................LocalStorage......................//
 
-useEffect(()=>{
-    let valueAsString = localStorage.getItem('counterValue')
-    if(valueAsString) {
-        let newValue = JSON.parse(valueAsString)
-        setStartValue(newValue)
-    }
-}, [])
-
-    useEffect(()=>{
-        localStorage.setItem('counterValue', JSON.stringify(numberTable) )
-    }, [numberTable])
+// useEffect(()=>{
+//     let valueAsString = localStorage.getItem('counterValue')
+//     if(valueAsString) {
+//         let newValue = JSON.parse(valueAsString)
+//         setStartValue(newValue)
+//     }
+// }, [])
+//
+//     useEffect(()=>{
+//         localStorage.setItem('counterValue', JSON.stringify(startValue) )
+//     }, [startValue])
 
     ///...........................................LocalStorage......................//
     function addPlusNumber() {//функция по увеличения числа в счетчике
