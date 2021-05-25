@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './Counter.css';
 import Table from "./Table/Table";
 import ButtonTest from "./Buttons/ButtonTest";

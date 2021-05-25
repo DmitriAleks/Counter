@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import RangeNumber from './RangeNumber/RangeNumber';
 import './Settings.css';
 

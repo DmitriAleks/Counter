@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import s from '../ButtonDisabled.module.css'
 
 
 type TypeButton = {
