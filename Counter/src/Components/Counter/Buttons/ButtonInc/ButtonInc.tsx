@@ -14,20 +14,14 @@ function ButtonInc(props: TypeButton) {
         props.addPlusNumber()
     }
     return(
-        <button
-            disabled={props.statusInc}
-            onClick={addPlusNumberCallback}
-        >inc</button>
-
-
-        // (errorDisable) ? <button
-        //       //  disabled={props.error}
-        //         onClick={addPlusNumberCallback}
-        //     >inc</button>
-        //     :<button
-        //         disabled={props.statusInc}
-        //         onClick={addPlusNumberCallback}
-        //     >inc</button>
+        (props.error) ? <button
+                disabled={props.error}
+                onClick={addPlusNumberCallback}
+            >inc</button>
+            :<button
+                disabled={props.statusInc}
+                onClick={addPlusNumberCallback}
+            >inc</button>
     )
 }
 export default ButtonInc

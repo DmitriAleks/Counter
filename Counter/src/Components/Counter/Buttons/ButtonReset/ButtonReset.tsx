@@ -12,19 +12,13 @@ function ButtonReset(props: TypeButton) {
     const updateNumberCallback = ()=>{props.updateNumber()
     }
     return (
-        <div ><button
-                      //  disabled={props.error}
-                        onClick={updateNumberCallback}> reset
-                    </button>
-        </div>
-
-    //     (props.error) ? <div ><button
-    //           //  disabled={props.error}
-    //             onClick={updateNumberCallback}> reset
-    //         </button></div>
-    //         :<button
-    //             onClick={updateNumberCallback}> reset
-    //         </button>
+        (props.error) ? <div ><button
+                disabled={props.error}
+                onClick={updateNumberCallback}> reset
+            </button></div>
+            :<button
+                onClick={updateNumberCallback}> reset
+            </button>
     )
 }
 
