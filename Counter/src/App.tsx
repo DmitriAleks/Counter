@@ -5,8 +5,26 @@ import Settings from "./Components/Settings/Settings";
 
 
 function App() {
+
     let [valueSettings, setValueSettings] = useState<number>(11)//стартовые значения, обновляются с помощию функции
-    let [startValue, setStartValue] = useState<any>()//стартовые значения, обновляются с помощию функции
+    let [startValue, setStartValue] = useState<number>(1)//стартовые значения, обновляются с помощию функции
+    ///...........................................LocalStorage......................//
+
+    useEffect(()=>{
+        let valueAsString = localStorage.getItem('counterValue')
+        if(valueAsString) {
+            let newValue = JSON.parse(valueAsString)
+            setStartValue(newValue)
+        }
+    }, [])
+    useEffect(()=>{
+        localStorage.setItem('counterValue', JSON.stringify(startValue) )
+    }, [startValue])
+
+
+
+
+    ///...........................................LocalStorage......................//
     const ChangeValue = (minNumber: string, maxNumber: string) => {//функция обновляющая, стартовые значения
         let getMaxValue = Number(maxNumber)//снизу идёт строка
         let getMinValue = Number(minNumber)//преобразуем в число
@@ -28,21 +46,9 @@ function App() {
             console.log('false error')
         }
     }
-    ///...........................................LocalStorage......................//
 
-// useEffect(()=>{
-//     let valueAsString = localStorage.getItem('counterValue')
-//     if(valueAsString) {
-//         let newValue = JSON.parse(valueAsString)
-//         setStartValue(newValue)
-//     }
-// }, [])
-//
-//     useEffect(()=>{
-//         localStorage.setItem('counterValue', JSON.stringify(startValue) )
-//     }, [startValue])
 
-    ///...........................................LocalStorage......................//
+
     function addPlusNumber() {//функция по увеличения числа в счетчике
         numberTable++;
         setNumberTable(numberTable) //++1
