@@ -9,7 +9,7 @@ type CounterType = {
     updateNumber: () => void
     statusInc: boolean
     valueSettings: number
-    error:boolean
+    error: boolean
 }
 
 function CounterTest(props: CounterType) {

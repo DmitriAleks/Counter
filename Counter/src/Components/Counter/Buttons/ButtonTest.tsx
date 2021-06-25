@@ -8,7 +8,7 @@ type TypeButton = {
     addPlusNumber: () => void
     updateNumber: () => void
     statusInc: boolean
-    error:boolean
+    error: boolean
 }
 
 function ButtonTest(props: TypeButton) {

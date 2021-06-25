@@ -1,10 +1,10 @@
-import React  from 'react';
+import React from 'react';
 import s from './Table.module.css'
 
 type TypeTable = {
     numberTable: number
     valueSettings: number
-    error:boolean
+    error: boolean
 }
 
 function Table(props: TypeTable) {
@@ -13,12 +13,13 @@ function Table(props: TypeTable) {
         : null
 
     return (
-        (errorMessage) ? <div >{errorMessage}</div> :
-            <div className={props.numberTable===props.valueSettings ? s.table: ''}>{props.numberTable}
+        (errorMessage) ? <div>{errorMessage}</div> :
+            <div className={props.numberTable === props.valueSettings ? s.table : ''}>{props.numberTable}
             </div>
     )
 
 }
+
 export default Table
 
 
