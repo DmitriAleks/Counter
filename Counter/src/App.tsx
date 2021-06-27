@@ -31,13 +31,11 @@ function App() {
         localStorage.setItem('counterValueMax', JSON.stringify(valueSettings))
     }, [valueSettings])
     ///...........................................LocalStorage......................//
-    const ChangeValue = (minNumber: string, maxNumber: string) => {//функция обновляющая, стартовые значения
-        let getMaxValue = Number(maxNumber)//снизу идёт строка
-        let getMinValue = Number(minNumber)//преобразуем в число
-        setValueSettings(getMaxValue)//переписываем максим стартовое число
-        setNumberTable(getMinValue)//переписываем минимальное стартовое число
-        setStartValue(getMinValue)//переписываем минимальное число которое отображается в счетчике
-        controlError(getMaxValue, getMinValue)//вызываем функцию проверки ошибки
+    const ChangeValue = (minNumber: number, maxNumber: number) => {debugger//функция обновляющая, стартовые значения
+        setValueSettings(maxNumber)//переписываем максим стартовое число
+        setNumberTable(minNumber)//переписываем минимальное стартовое число
+        setStartValue(minNumber)//переписываем минимальное число которое отображается в счетчике
+        controlError(maxNumber, minNumber)//вызываем функцию проверки ошибки
     }
     ///..........................................................................
     console.log(startValue)
@@ -76,7 +74,12 @@ function App() {
 
     return (
         <div className="App">
-            <Settings ChangeValue={ChangeValue}/>
+            <Settings ChangeValue={ChangeValue}
+                      maxValue={valueSettings}
+                      setValueSettings={setValueSettings}
+                      startValue={startValue}
+                      setStartValue={setStartValue}/>
+
             <CounterTest
                 valueSettings={valueSettings}
                 numberTable={numberTable}//наше прибавленое число, которое мы видим
@@ -84,6 +87,7 @@ function App() {
                 updateNumber={updateNumber}//кнопка удаления
                 statusInc={statusInc}//статус кнпоки
                 error={error}// статус ошибки
+
             />
         </div>
     );
