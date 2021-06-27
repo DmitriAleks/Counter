@@ -5,20 +5,31 @@ import Settings from "./Components/Settings/Settings";
 
 
 function App() {
-
     let [valueSettings, setValueSettings] = useState<number>(11)//стартовые значения, обновляются с помощию функции
     let [startValue, setStartValue] = useState<number>(1)//стартовые значения, обновляются с помощию функции
+    console.log(startValue)
     ///...........................................LocalStorage......................//
     useEffect(() => {
-        let valueAsString = localStorage.getItem('counterValue')
+        let valueAsString = localStorage.getItem('counterValueMin')
         if (valueAsString) {
             let newValue = JSON.parse(valueAsString)
             setStartValue(newValue)
         }
     }, [])
     useEffect(() => {
-        localStorage.setItem('counterValue', JSON.stringify(startValue))
+        localStorage.setItem('counterValueMin', JSON.stringify(startValue))
     }, [startValue])
+    useEffect(() => {
+        let valueAsString = localStorage.getItem('counterValueMax')
+        if (valueAsString) {
+            let newValue = JSON.parse(valueAsString)
+            setValueSettings(newValue)
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('counterValueMax', JSON.stringify(valueSettings))
+    }, [valueSettings])
     ///...........................................LocalStorage......................//
     const ChangeValue = (minNumber: string, maxNumber: string) => {//функция обновляющая, стартовые значения
         let getMaxValue = Number(maxNumber)//снизу идёт строка
@@ -29,16 +40,15 @@ function App() {
         controlError(getMaxValue, getMinValue)//вызываем функцию проверки ошибки
     }
     ///..........................................................................
+    console.log(startValue)
     let [numberTable, setNumberTable] = useState<number>(startValue)// стейт в котором храним отбражающее число в счетчике
     let [statusInc, setNewStatusInc] = useState<boolean>(false)//стейт в котором храним статус кнопки
     let [error, setError] = useState<boolean>(false)//булевый стейт, контролируем ошибки
     const controlError = (maxValue: number, minValue: number) => {//функция контроля ошибки
         if (maxValue <= minValue || minValue <= 0) {//если максимальное число меньше минимального возвращает в стейт с ерорам тру
             setError(true)
-            console.log('true error')
         } else {
             setError(false)
-            console.log('false error')
         }
     }
 

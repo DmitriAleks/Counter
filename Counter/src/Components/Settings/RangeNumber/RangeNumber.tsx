@@ -14,7 +14,7 @@ function RangeNumber(props: RangeNumberType) {
     }
     const onChangeMinValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
         setMinValue(e.currentTarget.value)
-    }
+    }   
     let getMaxValue: string = maxValue//на прямую не получилось, создали переменые что бы передать значения
     let getMinValue: string = minValue//в функции на верх
     const setNewMaxMinValue = () => {//функция передаём значения на вверх

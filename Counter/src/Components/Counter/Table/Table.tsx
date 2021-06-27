@@ -8,6 +8,7 @@ type TypeTable = {
 }
 
 function Table(props: TypeTable) {
+    console.log('table')
     const errorMessage = props.error
         ? <div style={{color: 'red'}}>Ошибка ввода</div>
         : null
