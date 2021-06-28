@@ -2,15 +2,14 @@ import React from 'react';
 
 
 type TypeButtonAll = {
- item:()=> void
-    error:boolean
+    activity: () => void
+    error: boolean
     nameButton: string
-
 }
 
 function ButtonAll(props: TypeButtonAll) {
     const addPlusNumberCallback = () => {
-        props.item()
+        props.activity()
     }
     return (
         (props.error) ? <button
@@ -22,4 +21,5 @@ function ButtonAll(props: TypeButtonAll) {
             >{props.nameButton}</button>
     )
 }
+
 export default ButtonAll
