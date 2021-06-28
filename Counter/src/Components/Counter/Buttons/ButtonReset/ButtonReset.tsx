@@ -8,7 +8,6 @@ type TypeButton = {
 }
 
 function ButtonReset(props: TypeButton) {
-    console.log('reset')
     const updateNumberCallback = () => {
         props.updateNumber()
     }

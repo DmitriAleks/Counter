@@ -31,7 +31,7 @@ function App() {
         localStorage.setItem('counterValueMax', JSON.stringify(valueSettings))
     }, [valueSettings])
     ///...........................................LocalStorage......................//
-    const ChangeValue = (minNumber: number, maxNumber: number) => {debugger//функция обновляющая, стартовые значения
+    const ChangeValue = (minNumber: number, maxNumber: number) => {//функция обновляющая, стартовые значения
         setValueSettings(maxNumber)//переписываем максим стартовое число
         setNumberTable(minNumber)//переписываем минимальное стартовое число
         setStartValue(minNumber)//переписываем минимальное число которое отображается в счетчике
@@ -75,17 +75,18 @@ function App() {
     return (
         <div className="App">
             <Settings ChangeValue={ChangeValue}
-                      maxValue={valueSettings}
-                      setValueSettings={setValueSettings}
-                      startValue={startValue}
-                      setStartValue={setStartValue}/>
+                      maxValue={valueSettings}//максим значение в ипуты
+                      setValueSettings={setValueSettings}//функция хука по смене макс значения
+                      startValue={startValue}//миним значение в ипуты
+                      setStartValue={setStartValue}//функция хука по смене мин значения
+            />
 
             <CounterTest
                 valueSettings={valueSettings}
                 numberTable={numberTable}//наше прибавленое число, которое мы видим
                 addPlusNumber={addPlusNumber}//кнопк добавления
                 updateNumber={updateNumber}//кнопка удаления
-                statusInc={statusInc}//статус кнпоки
+               statusInc={statusInc}//статус кнпоки
                 error={error}// статус ошибки
 
             />

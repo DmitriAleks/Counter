@@ -9,7 +9,6 @@ type TypeButton = {
 }
 
 function ButtonInc(props: TypeButton) {
-    console.log('inc')
     const addPlusNumberCallback = () => {
         props.addPlusNumber()
     }

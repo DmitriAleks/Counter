@@ -7,7 +7,7 @@ type CounterType = {
     numberTable: number
     addPlusNumber: () => void
     updateNumber: () => void
-    statusInc: boolean
+   statusInc: boolean
     valueSettings: number
     error: boolean
 }
@@ -25,7 +25,7 @@ function CounterTest(props: CounterType) {
                         <ButtonTest
                             addPlusNumber={props.addPlusNumber}
                             updateNumber={props.updateNumber}
-                            statusInc={props.statusInc}
+                          statusInc={props.statusInc}
                             error={props.error}
                         />
 
