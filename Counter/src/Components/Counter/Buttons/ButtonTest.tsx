@@ -13,13 +13,20 @@ type TypeButton = {
 }
 
 function ButtonTest(props: TypeButton) {
-    return (<div className={s.button}>
-        {/*<ButtonInc addPlusNumber={props.addPlusNumber} statusInc={props.statusInc} error={props.error}/>*/}
-        {/*<ButtonReset updateNumber={props.updateNumber} error={props.error}/>*/}
+    return (
         (props.statusInc) ?
-        <ButtonAll  item={props.addPlusNumber} nameButton={"test"} error={props.error} />
-        <ButtonAll item={props.updateNumber} nameButton={"test2"} error={props.error} />
-    </div>)
+
+            <div className={s.button}>
+<button disabled={props.statusInc}>INC</button>
+                <ButtonAll item={props.updateNumber} nameButton={"Reset"} error={props.error} />
+            </div>
+            :
+            <div className={s.button}>
+                <ButtonAll  item={props.addPlusNumber} nameButton={"INC"} error={props.error} />
+                <ButtonAll item={props.updateNumber} nameButton={"Reset"} error={props.error} />
+    </div>
+    )
 }
 
 export default ButtonTest
+

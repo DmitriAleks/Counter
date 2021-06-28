@@ -18,7 +18,6 @@ function ButtonAll(props: TypeButtonAll) {
                 onClick={addPlusNumberCallback}
             >{props.nameButton}</button>
             : <button
-                disabled={props.error}
                 onClick={addPlusNumberCallback}
             >{props.nameButton}</button>
     )
