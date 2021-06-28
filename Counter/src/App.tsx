@@ -79,6 +79,7 @@ function App() {
                       setValueSettings={setValueSettings}//функция хука по смене макс значения
                       startValue={startValue}//миним значение в ипуты
                       setStartValue={setStartValue}//функция хука по смене мин значения
+                      error={error}
             />
 
             <CounterTest

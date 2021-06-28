@@ -1,6 +1,5 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './RangeNumber.module.css'
-import ButtonAll from "../../Counter/Buttons/ButtonAll";
 
 type RangeNumberType = {
     ChangeValue: (minNumber: number, maxNumber: number) => void
@@ -8,6 +7,7 @@ type RangeNumberType = {
     setValueSettings:any
     startValue:number
     setStartValue:any
+    error: boolean
 }
 
 function RangeNumber(props: RangeNumberType) {
@@ -22,8 +22,12 @@ function RangeNumber(props: RangeNumberType) {
 
 
     return (
-        <div className={s.global}>
-            <span>Максим значен<input type="number" value={props.maxValue} onChange={onChangeMaxValue}/></span>
+    (props.error) ? <div className={s.global}>
+            <span>Максим значен<input type="number"  className={s.error} value={props.maxValue} onChange={onChangeMaxValue}/></span>
+            <div>Миним значен<input type="number"  className={s.error} value={props.startValue} onChange={onChangeMinValue}/></div>
+    </div>
+        :<div className={s.global}>
+            <span>Максим значен<input type="number"  value={props.maxValue} onChange={onChangeMaxValue}/></span>
             <div>Миним значен<input type="number" value={props.startValue} onChange={onChangeMinValue}/></div>
         </div>
     )

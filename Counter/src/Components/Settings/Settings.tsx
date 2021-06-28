@@ -10,6 +10,7 @@ type SettingsType = {
     setValueSettings: any
     startValue: number
     setStartValue: any
+    error: boolean
 }
 
 function Settings(props: SettingsType) {
@@ -25,8 +26,11 @@ function Settings(props: SettingsType) {
                     maxValue={props.maxValue}
                     setValueSettings={props.setValueSettings}
                     startValue={props.startValue}
-                    setStartValue={props.setStartValue}/></div>
+                    setStartValue={props.setStartValue}
+                    error={props.error}
+                />
 
+            </div>
             <div className='corpsTableSettings'>
                 <div className={s.button}>
                     <ButtonAll activity={setNewMaxMinValue} nameButton={"set"} error={false}/>

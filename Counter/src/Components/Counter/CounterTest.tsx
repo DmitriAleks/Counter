@@ -13,7 +13,6 @@ type CounterType = {
 }
 
 function CounterTest(props: CounterType) {
-
     return (
         <div>
             <div className="corps">
