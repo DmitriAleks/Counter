@@ -8,27 +8,24 @@ type RangeNumberType = {
     startValue:number
     setStartValue:any
     error: boolean
+    onChangeMinValue:(e: ChangeEvent<HTMLInputElement>)=> void
+    onChangeMaxValue:(e: ChangeEvent<HTMLInputElement>)=> void
 }
 
 function RangeNumber(props: RangeNumberType) {
 
 
-    const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
-        props.setValueSettings(Number(e.currentTarget.value))
-    }
-    const onChangeMinValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
-        props.setStartValue(Number(e.currentTarget.value))
-    }
+
 
 
     return (
     (props.error) ? <div className={s.global}>
-            <span>Максим значен<input type="number"  className={s.error} value={props.maxValue} onChange={onChangeMaxValue}/></span>
-            <div>Миним значен<input type="number"  className={s.error} value={props.startValue} onChange={onChangeMinValue}/></div>
+            <span>Максим значен<input type="number"  className={s.error} value={props.maxValue} onChange={props.onChangeMaxValue}/></span>
+            <div>Миним значен<input type="number"  className={s.error} value={props.startValue} onChange={props.onChangeMinValue}/></div>
     </div>
         :<div className={s.global}>
-            <span>Максим значен<input type="number"  value={props.maxValue} onChange={onChangeMaxValue}/></span>
-            <div>Миним значен<input type="number" value={props.startValue} onChange={onChangeMinValue}/></div>
+            <span>Максим значен<input type="number"  value={props.maxValue} onChange={props.onChangeMaxValue}   /></span>
+            <span>Миним значен<input type="number" value={props.startValue} onChange={props.onChangeMinValue}/></span>
         </div>
     )
 }

@@ -52,10 +52,10 @@ function App() {
             setError(false)
         }
     }
-    // useEffect(() => { // бесполезеая херня)) следит за тем
+    // useEffect(() => { // бесполезеая херня)) следит за тем(может пригодится)
     //     setNumberTable(startValue)
     // }, [startValue])
-    //
+
 
     function addPlusNumber() {//функция по увеличения числа в счетчике
         numberTable++;

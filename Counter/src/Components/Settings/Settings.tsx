@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import RangeNumber from './RangeNumber/RangeNumber';
 import './Settings.css';
 import ButtonAll from "../Counter/Buttons/ButtonAll";
@@ -17,6 +17,13 @@ function Settings(props: SettingsType) {
     const setNewMaxMinValue = () => {//функция передаём значения на вверх
         props.ChangeValue(props.startValue, props.maxValue)
     }
+    const onChangeMinValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
+        props.setStartValue(Number(e.currentTarget.value))
+        alert('focus')
+    }
+    const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
+        props.setValueSettings(Number(e.currentTarget.value))
+    }
 
     return (
         <div className="corpsSettings">
@@ -28,8 +35,9 @@ function Settings(props: SettingsType) {
                     startValue={props.startValue}
                     setStartValue={props.setStartValue}
                     error={props.error}
+                    onChangeMinValue={onChangeMinValue}
+                    onChangeMaxValue={onChangeMaxValue}
                 />
-
             </div>
             <div className='corpsTableSettings'>
                 <div className={s.button}>
