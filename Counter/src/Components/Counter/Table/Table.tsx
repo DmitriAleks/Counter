@@ -5,11 +5,14 @@ type TypeTable = {
     numberTable: number
     valueSettings: number
     error: boolean
+    errorMessage:string
 }
+
+
 
 function Table(props: TypeTable) {
     const errorMessage = props.error
-        ? <div style={{color: 'red'}}>Ошибка ввода</div>
+        ? <div style={{color: 'red'}}>{props.errorMessage}</div>
         : null
 
     return (
