@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
 import CounterTest from './Components/Counter/CounterTest';
 import Settings from "./Components/Settings/Settings";
@@ -8,7 +8,9 @@ function App() {
     let [valueSettings, setValueSettings] = useState<number>(11)//стартовые значения, обновляются с помощию функции
     let [startValue, setStartValue] = useState<number>(1)//стартовые значения, обновляются с помощию функции
     let [errorMessage, setErrorMessage] = useState<string>('')//текс ошибки либо предупреждения закончит ввод данных
-    console.log(startValue)
+    let [numberTable, setNumberTable] = useState<number>(startValue)// стейт в котором храним отбражающее число в счетчике
+    let [statusInc, setNewStatusInc] = useState<boolean>(false)//стейт в котором храним статус кнопки
+    let [error, setError] = useState<boolean>(false)//булевый стейт, контролируем ошибки
     ///...........................................LocalStorage......................//
     useEffect(() => {
         let valueAsString = localStorage.getItem('counterValueMin')
@@ -39,11 +41,20 @@ function App() {
         controlError(maxNumber, minNumber)//вызываем функцию проверки ошибки
     }
     ///..........................................................................
-    console.log(startValue)
+    //////Функции Settings///////
+    const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
+        setValueSettings(Number(e.currentTarget.value))
+    }
+    const onChangeMinValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
+       setStartValue(Number(e.currentTarget.value))
+        alert('focus')
+    }
+    const setNewMaxMinValue = () => {//функция передаём значения на вверх
+        ChangeValue(startValue, valueSettings)
+    }
 
-    let [numberTable, setNumberTable] = useState<number>(startValue)// стейт в котором храним отбражающее число в счетчике
-    let [statusInc, setNewStatusInc] = useState<boolean>(false)//стейт в котором храним статус кнопки
-    let [error, setError] = useState<boolean>(false)//булевый стейт, контролируем ошибки
+
+    //////Функции Settings///////
     const controlError = (maxValue: number, minValue: number) => {//функция контроля ошибки
         if (maxValue <= minValue || minValue <= 0) {//если максимальное число меньше минимального возвращает в стейт с ерорам тру
             setError(true)
@@ -86,6 +97,9 @@ function App() {
                       startValue={startValue}//миним значение в ипуты
                       setStartValue={setStartValue}//функция хука по смене мин значения
                       error={error}
+                      onChangeMaxValue={onChangeMaxValue}
+                      onChangeMinValue={onChangeMinValue}
+                      setNewMaxMinValue={setNewMaxMinValue}
             />
 
             <CounterTest

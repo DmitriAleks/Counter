@@ -2,11 +2,8 @@ import React, {ChangeEvent} from 'react';
 import s from './RangeNumber.module.css'
 
 type RangeNumberType = {
-    ChangeValue: (minNumber: number, maxNumber: number) => void
     maxValue: number
-    setValueSettings:any
     startValue:number
-    setStartValue:any
     error: boolean
     onChangeMinValue:(e: ChangeEvent<HTMLInputElement>)=> void
     onChangeMaxValue:(e: ChangeEvent<HTMLInputElement>)=> void
