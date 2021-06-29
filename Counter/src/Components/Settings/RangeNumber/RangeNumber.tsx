@@ -10,11 +10,6 @@ type RangeNumberType = {
 }
 
 function RangeNumber(props: RangeNumberType) {
-
-
-
-
-
     return (
     (props.error) ? <div className={s.global}>
             <span>Максим значен<input type="number"  className={s.error} value={props.maxValue} onChange={props.onChangeMaxValue}/></span>

@@ -11,6 +11,7 @@ function App() {
     let [numberTable, setNumberTable] = useState<number>(startValue)// стейт в котором храним отбражающее число в счетчике
     let [statusInc, setNewStatusInc] = useState<boolean>(false)//стейт в котором храним статус кнопки
     let [error, setError] = useState<boolean>(false)//булевый стейт, контролируем ошибки
+    let [errorSetButton, setErrorSetButton] = useState<boolean>(false)//булевый стейт, контролируем set button
     ///...........................................LocalStorage......................//
     useEffect(() => {
         let valueAsString = localStorage.getItem('counterValueMin')
@@ -41,22 +42,29 @@ function App() {
         controlError(maxNumber, minNumber)//вызываем функцию проверки ошибки
     }
     ///..........................................................................
-    //////Функции Settings///////
+    //////                                    Функции Settings                      ///////
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
         setValueSettings(Number(e.currentTarget.value))
+        setError(true)
+        setErrorMessage('Введите значение')
+        // if(error == true) {
+        //     setErrorSetButton(true)
+        // } else {
+        //     setErrorSetButton(false)
+        // }
     }
     const onChangeMinValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
        setStartValue(Number(e.currentTarget.value))
-        alert('focus')
+        setError(true)
+        setErrorMessage('Введите значение')
     }
     const setNewMaxMinValue = () => {//функция передаём значения на вверх
         ChangeValue(startValue, valueSettings)
+
     }
-
-
-    //////Функции Settings///////
+    //////                        Функции Settings                             ///////
     const controlError = (maxValue: number, minValue: number) => {//функция контроля ошибки
-        if (maxValue <= minValue || minValue <= 0) {//если максимальное число меньше минимального возвращает в стейт с ерорам тру
+        if (maxValue <= minValue || minValue < 0) {//если максимальное число меньше минимального возвращает в стейт с ерорам тру
             setError(true)
             setErrorMessage("Ошибка ввода")
         } else {
@@ -97,6 +105,7 @@ function App() {
                       startValue={startValue}//миним значение в ипуты
                       setStartValue={setStartValue}//функция хука по смене мин значения
                       error={error}
+                      errorSetButton={errorSetButton}
                       onChangeMaxValue={onChangeMaxValue}
                       onChangeMinValue={onChangeMinValue}
                       setNewMaxMinValue={setNewMaxMinValue}
