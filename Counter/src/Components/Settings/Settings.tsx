@@ -34,7 +34,7 @@ function Settings(props: SettingsType) {
             </div>
             <div className='corpsTableSettings'>
                 <div className={s.button}>
-                    <ButtonAll activity={props.setNewMaxMinValue} nameButton={"set"} error={false}/>
+                    <ButtonAll  activity={props.setNewMaxMinValue} nameButton={"set"} error={false}/>
                 </div>
             </div>
         </div>

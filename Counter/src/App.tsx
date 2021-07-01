@@ -39,19 +39,24 @@ function App() {
         setValueSettings(maxNumber)//переписываем максим стартовое число
         setNumberTable(minNumber)//переписываем минимальное стартовое число
         setStartValue(minNumber)//переписываем минимальное число которое отображается в счетчике
-        controlError(maxNumber, minNumber)//вызываем функцию проверки ошибки
+       controlError(maxNumber, minNumber)//вызываем функцию проверки ошибки
     }
+    // useEffect(() => { // следит за изменением числа в импутах и выводит надлежащее сообщение
+    //     controlError(valueSettings,startValue)
+    // }, [startValue,valueSettings])
     ///..........................................................................
     //////                                    Функции Settings                      ///////
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
         setValueSettings(Number(e.currentTarget.value))
        setError(true)
         setErrorMessage('Введите значение')
+       // controlError(valueSettings,startValue)
     }
     const onChangeMinValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
        setStartValue(Number(e.currentTarget.value))
         setError(true)
         setErrorMessage('Введите значение')
+       // controlError(valueSettings,startValue)
     }
     const setNewMaxMinValue = () => {//функция передаём значения на вверх
         ChangeValue(startValue, valueSettings)
@@ -79,7 +84,7 @@ function App() {
         numberTable++;
         setNumberTable(numberTable) //++1
         statusButtonInc(numberTable);//проверка на дизейбл, если число равно максим, кнопка дизейблится
-        console.log(numberTable)
+
     }
 
     function updateNumber() {//функция по сбрасыванию числа
@@ -95,9 +100,7 @@ function App() {
             return setNewStatusInc(false)
         }
     }
-    useEffect(() => { // следит за изменением числа в импутах и выводит надлежащее сообщение
-        controlError(valueSettings,startValue)
-    }, [startValue,valueSettings])
+
     return (
         <div className="App">
             <Settings ChangeValue={ChangeValue}
