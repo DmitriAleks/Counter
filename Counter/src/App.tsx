@@ -45,13 +45,8 @@ function App() {
     //////                                    Функции Settings                      ///////
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
         setValueSettings(Number(e.currentTarget.value))
-        setError(true)
+       setError(true)
         setErrorMessage('Введите значение')
-        // if(error == true) {
-        //     setErrorSetButton(true)
-        // } else {
-        //     setErrorSetButton(false)
-        // }
     }
     const onChangeMinValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
        setStartValue(Number(e.currentTarget.value))
@@ -71,10 +66,14 @@ function App() {
             setError(false)
         }
     }
-    // useEffect(() => { // бесполезеая херня)) следит за тем(может пригодится)
-    //     setNumberTable(startValue)
-    // }, [startValue])
 
+    useEffect(() => { // следит за сохранием числа в табле, после обновления
+        setNumberTable(startValue)
+    }, [startValue])
+
+    // useEffect(() => { // тест
+    //     controlError( valueSettings, startValue)
+    // }, [startValue,valueSettings])
 
     function addPlusNumber() {//функция по увеличения числа в счетчике
         numberTable++;
@@ -96,7 +95,9 @@ function App() {
             return setNewStatusInc(false)
         }
     }
-
+    useEffect(() => { // следит за изменением числа в импутах и выводит надлежащее сообщение
+        controlError(valueSettings,startValue)
+    }, [startValue,valueSettings])
     return (
         <div className="App">
             <Settings ChangeValue={ChangeValue}
@@ -109,6 +110,7 @@ function App() {
                       onChangeMaxValue={onChangeMaxValue}
                       onChangeMinValue={onChangeMinValue}
                       setNewMaxMinValue={setNewMaxMinValue}
+                      setErrorSetButton={setErrorSetButton}
             />
 
             <CounterTest

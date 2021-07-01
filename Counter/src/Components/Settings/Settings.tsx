@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import RangeNumber from './RangeNumber/RangeNumber';
 import './Settings.css';
 import ButtonAll from "../Counter/Buttons/ButtonAll";
@@ -15,6 +15,7 @@ type SettingsType = {
     onChangeMaxValue:(e: ChangeEvent<HTMLInputElement>)=> void
     onChangeMinValue:(e: ChangeEvent<HTMLInputElement>)=> void
     setNewMaxMinValue:()=>void
+    setErrorSetButton:any
 }
 
 function Settings(props: SettingsType) {
@@ -33,7 +34,7 @@ function Settings(props: SettingsType) {
             </div>
             <div className='corpsTableSettings'>
                 <div className={s.button}>
-                    <ButtonAll activity={props.setNewMaxMinValue} nameButton={"set"} error={props.errorSetButton}/>
+                    <ButtonAll activity={props.setNewMaxMinValue} nameButton={"set"} error={false}/>
                 </div>
             </div>
         </div>
