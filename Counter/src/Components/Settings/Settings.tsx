@@ -5,7 +5,6 @@ import ButtonAll from "../Counter/Buttons/ButtonAll";
 import s from '../../Components/Counter/Buttons/Button.module.css'
 
 type SettingsType = {
-    ChangeValue: (minNumber: number, maxNumber: number) => void
     maxValue: number
     setValueSettings: any
     startValue: number

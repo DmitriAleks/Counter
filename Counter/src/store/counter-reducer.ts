@@ -32,7 +32,7 @@ export const counterReducer = (state = initialState, action: ActionUnionType):in
         case ADD_PLUS_NUMBER:
             return {
                 ...state,
-                numberTable: +1
+                numberTable: +1,
             }
         default:
             return state

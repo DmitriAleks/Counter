@@ -34,17 +34,20 @@ function App() {
     useEffect(() => {
         localStorage.setItem('counterValueMax', JSON.stringify(valueSettings))
     }, [valueSettings])
-    ///...........................................LocalStorage......................//
     const ChangeValue = (minNumber: number, maxNumber: number) => {//функция обновляющая, стартовые значения
         setValueSettings(maxNumber)//переписываем максим стартовое число
         setNumberTable(minNumber)//переписываем минимальное стартовое число
         setStartValue(minNumber)//переписываем минимальное число которое отображается в счетчике
-       controlError(maxNumber, minNumber)//вызываем функцию проверки ошибки
+        if (maxNumber <= minNumber || minNumber < 0) {//если максимальное число меньше минимального возвращает в стейт с ерорам тру
+            setError(true)
+            setErrorMessage("Ошибка ввода")
+        } else {
+            setError(false)
+        }
     }
     // useEffect(() => { // следит за изменением числа в импутах и выводит надлежащее сообщение
     //     controlError(valueSettings,startValue)
     // }, [startValue,valueSettings])
-    ///..........................................................................
     //////                                    Функции Settings                      ///////
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
         setValueSettings(Number(e.currentTarget.value))
@@ -63,14 +66,14 @@ function App() {
 
     }
     //////                        Функции Settings                             ///////
-    const controlError = (maxValue: number, minValue: number) => {//функция контроля ошибки
-        if (maxValue <= minValue || minValue < 0) {//если максимальное число меньше минимального возвращает в стейт с ерорам тру
-            setError(true)
-            setErrorMessage("Ошибка ввода")
-        } else {
-            setError(false)
-        }
-    }
+    // const controlError = (maxValue: number, minValue: number) => {//функция контроля ошибки//не актуальна
+    //     if (maxValue <= minValue || minValue < 0) {//если максимальное число меньше минимального возвращает в стейт с ерорам тру
+    //         setError(true)
+    //         setErrorMessage("Ошибка ввода")
+    //     } else {
+    //         setError(false)
+    //     }
+    // }
 
     useEffect(() => { // следит за сохранием числа в табле, после обновления
         setNumberTable(startValue)
@@ -93,7 +96,7 @@ function App() {
     }
 
     function statusButtonInc(numberTable: number) {//фукнция по изменению статуса кнопки (Дизейбл)
-        if (numberTable === valueSettings) {//проверка на дизейбл, если число равно максим, кнопка дизейблится
+        if (numberTable >= valueSettings) {//проверка на дизейбл, если число равно максим, кнопка дизейблится
             return setNewStatusInc(true)
         } else {
             return setNewStatusInc(false)
@@ -102,7 +105,7 @@ function App() {
 
     return (
         <div className="App">
-            <Settings ChangeValue={ChangeValue}
+            <Settings
                       maxValue={valueSettings}//максим значение в ипуты
                       setValueSettings={setValueSettings}//функция хука по смене макс значения
                       startValue={startValue}//миним значение в ипуты
