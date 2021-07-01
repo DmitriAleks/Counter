@@ -3,8 +3,6 @@ type ActionUnionType = RemoveTaskAT
 
 type RemoveTaskAT = {
     type: 'ADD-PLUS-NUMBER',
-    taskID:string
-    todoListID: string
 }
 
 export type initialStateType ={
@@ -34,11 +32,12 @@ export const counterReducer = (state = initialState, action: ActionUnionType):in
         case ADD_PLUS_NUMBER:
             return {
                 ...state,
+                numberTable: +1
             }
         default:
             return state
     }
 }
-export const addPlusNumberAC = (taskID:string, todoListID:string):RemoveTaskAT => {
-    return {type: 'ADD-PLUS-NUMBER', taskID, todoListID : todoListID}
+export const addPlusNumberAC = ():RemoveTaskAT => {
+    return {type: 'ADD-PLUS-NUMBER'}
 }

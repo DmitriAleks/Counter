@@ -90,7 +90,6 @@ function App() {
     function updateNumber() {//функция по сбрасыванию числа
         setNumberTable(startValue)//сбрасывание стейта на минимальное значение
         statusButtonInc(startValue);//сбрасываем дизейбл с добавлния
-        console.log('Я удаляю')
     }
 
     function statusButtonInc(numberTable: number) {//фукнция по изменению статуса кнопки (Дизейбл)
