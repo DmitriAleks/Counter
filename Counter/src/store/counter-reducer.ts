@@ -37,11 +37,13 @@ export const counterReducer = (state = initialState, action: ActionUnionType):in
             return {
                 ...state,
                 numberTable: state.numberTable+1,
+                statusInc: state.numberTable >= state.valueSettings
             }
         case UPDATE_NUMBER:
             return {
                 ...state,
                 numberTable: state.numberTable = state.startValue,
+                statusInc: state.statusInc = false
             }
         default:
             return state

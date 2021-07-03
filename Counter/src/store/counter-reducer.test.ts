@@ -21,6 +21,7 @@ test('correct add new number', () => {
     const endState = counterReducer(startState, action)
 
     expect(endState.numberTable).toEqual(5);
+    expect(endState.statusInc).toEqual(true);
 });
 
 test('correct update number', () => {
@@ -30,4 +31,5 @@ test('correct update number', () => {
     const endState = counterReducer(startState, action)
 
     expect(endState.numberTable).toEqual(0);
+    expect(endState.statusInc).toEqual(false);
 });
