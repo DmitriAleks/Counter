@@ -22,6 +22,7 @@ test('correct add new number', () => {
 
     expect(endState.numberTable).toEqual(5);
 });
+
 test('correct update number', () => {
 
     const action = updateNumberAC();
