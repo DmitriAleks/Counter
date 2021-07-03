@@ -1,8 +1,12 @@
 const ADD_PLUS_NUMBER = 'ADD-PLUS-NUMBER'
-type ActionUnionType = RemoveTaskAT
+const UPDATE_NUMBER = 'UPDATE-NUMBER'
+type ActionUnionType = RemoveTaskAT|UpdateNumberAT
 
 type RemoveTaskAT = {
     type: 'ADD-PLUS-NUMBER',
+}
+type UpdateNumberAT = {
+        type: 'UPDATE-NUMBER',
 }
 
 export type initialStateType ={
@@ -32,7 +36,12 @@ export const counterReducer = (state = initialState, action: ActionUnionType):in
         case ADD_PLUS_NUMBER:
             return {
                 ...state,
-                numberTable: +1,
+                numberTable: state.numberTable+1,
+            }
+        case UPDATE_NUMBER:
+            return {
+                ...state,
+                numberTable: state.numberTable = state.startValue,
             }
         default:
             return state
@@ -40,4 +49,7 @@ export const counterReducer = (state = initialState, action: ActionUnionType):in
 }
 export const addPlusNumberAC = ():RemoveTaskAT => {
     return {type: 'ADD-PLUS-NUMBER'}
+}
+export const updateNumberAC = ():UpdateNumberAT => {
+    return {type: 'UPDATE-NUMBER'}
 }

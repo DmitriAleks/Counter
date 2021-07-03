@@ -1,5 +1,5 @@
 
-import {addPlusNumberAC, counterReducer, initialStateType} from './counter-reducer';
+import {addPlusNumberAC, counterReducer, initialStateType, updateNumberAC} from './counter-reducer';
 
 let startState: initialStateType
 
@@ -7,19 +7,18 @@ beforeEach(()=>{
     startState = {
         startValue:0,
         valueSettings:1,
-        numberTable: 0,
+        numberTable: 4,
         errorMessage: '',
         statusInc: false,
         error:false,
         errorSetButton: false,
     };
 })
-test('correct task should be deleted from correct array', () => {
-
+test('correct add new number', () => {
 
     const action = addPlusNumberAC();
 
     const endState = counterReducer(startState, action)
 
-    expect(endState.numberTable).toEqual(1);
+    expect(endState.numberTable).toEqual(5);
 });
