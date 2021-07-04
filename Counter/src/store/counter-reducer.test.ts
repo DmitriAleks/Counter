@@ -1,5 +1,4 @@
-
-import {addPlusNumberAC, counterReducer, initialStateType, updateNumberAC} from './counter-reducer';
+import {addPlusNumberAC, changeValueAC, counterReducer, initialStateType, updateNumberAC} from './counter-reducer';
 
 let startState: initialStateType
 
@@ -17,7 +16,6 @@ beforeEach(()=>{
 test('correct add new number', () => {
 
     const action = addPlusNumberAC();
-
     const endState = counterReducer(startState, action)
 
     expect(endState.numberTable).toEqual(5);
@@ -27,9 +25,20 @@ test('correct add new number', () => {
 test('correct update number', () => {
 
     const action = updateNumberAC();
-
     const endState = counterReducer(startState, action)
 
     expect(endState.numberTable).toEqual(0);
+    expect(endState.statusInc).toEqual(false);
+});
+test('correct change value', () => {
+
+    const action = changeValueAC(4, 9);
+    const endState = counterReducer(startState, action)
+
+    expect(endState.numberTable).toEqual(4);
+    expect(endState.startValue).toEqual(4);
+    expect(endState.valueSettings).toEqual(9);
+    expect(endState.error).toEqual(false);
+    expect(endState.errorMessage).toEqual("Ошибка ввода");
     expect(endState.statusInc).toEqual(false);
 });
