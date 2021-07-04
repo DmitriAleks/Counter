@@ -42,3 +42,15 @@ test('correct change value', () => {
     expect(endState.errorMessage).toEqual("Ошибка ввода");
     expect(endState.statusInc).toEqual(false);
 });
+test('no correct change value', () => {
+
+    const action = changeValueAC(11, 9);
+    const endState = counterReducer(startState, action)
+
+    expect(endState.numberTable).toEqual(11);
+    expect(endState.startValue).toEqual(11);
+    expect(endState.valueSettings).toEqual(9);
+    expect(endState.error).toEqual(true);
+    expect(endState.errorMessage).toEqual("Ошибка ввода");
+    expect(endState.statusInc).toEqual(false);
+});
