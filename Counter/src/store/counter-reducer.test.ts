@@ -1,4 +1,12 @@
-import {addPlusNumberAC, changeValueAC, counterReducer, initialStateType, updateNumberAC} from './counter-reducer';
+import {
+    addPlusNumberAC,
+    changeValueAC,
+    counterReducer,
+    initialStateType,
+    onChangeMaxValueAC,
+    updateNumberAC
+} from './counter-reducer';
+import {ChangeEvent} from "react";
 
 let startState: initialStateType
 
@@ -53,4 +61,15 @@ test('no correct change value', () => {
     expect(endState.error).toEqual(true);
     expect(endState.errorMessage).toEqual("Ошибка ввода");
     expect(endState.statusInc).toEqual(false);
+});
+test(' correct change max value', () => {
+
+    const action = onChangeMaxValueAC('5' as any);
+    const endState = counterReducer(startState, action)
+
+    expect(endState.numberTable).toEqual(4);
+    expect(endState.startValue).toEqual(0);
+    expect(endState.valueSettings).toEqual(5);
+    expect(endState.error).toEqual(true);
+    expect(endState.errorMessage).toEqual('Введите значение');
 });

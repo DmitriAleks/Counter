@@ -74,7 +74,7 @@ export const counterReducer = (state = initialState, action: ActionUnionType): i
                 ...state,
                 valueSettings: state.valueSettings = Number(action.e),
                 error: state.error = true,
-                errorMessage: state.errorMessage = 'Введите значение'
+                errorMessage: state.errorMessage = 'Введите значение',
             }
         default:
             return state
@@ -93,7 +93,7 @@ export const changeValueAC = (minNumber: number, maxNumber: number): ChangeValue
         maxNumber,
     }
 }
-export const onChangeMaxValueAC = ( e: ChangeEvent<HTMLInputElement>): OnChangeMaxValueAT => {
+export const onChangeMaxValueAC = ( e: ChangeEvent<HTMLInputElement> ): OnChangeMaxValueAT => {
     return {
         type: 'ON_CHANGE_MAX_VALUE',
         e:e,
