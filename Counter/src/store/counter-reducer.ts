@@ -1,8 +1,12 @@
+import {ChangeEvent} from "react";
+
 const ADD_PLUS_NUMBER = 'ADD-PLUS-NUMBER'
 const UPDATE_NUMBER = 'UPDATE-NUMBER'
 const CHANGE_VALUE = 'CHANGE-VALUE'
+const ON_CHANGE_MAX_VALUE = 'ON_CHANGE_MAX_VALUE'
 
-type ActionUnionType = RemoveTaskAT | UpdateNumberAT | ChangeValueAT
+
+type ActionUnionType = RemoveTaskAT | UpdateNumberAT | ChangeValueAT|OnChangeMaxValueAT
 
 type RemoveTaskAT = {
     type: 'ADD-PLUS-NUMBER',
@@ -14,6 +18,10 @@ type ChangeValueAT = {
     type: 'CHANGE-VALUE',
     minNumber: number,
     maxNumber: number,
+}
+type OnChangeMaxValueAT = {
+    type: 'ON_CHANGE_MAX_VALUE'
+    e: ChangeEvent<HTMLInputElement>
 }
 
 export type initialStateType = {
@@ -61,6 +69,13 @@ export const counterReducer = (state = initialState, action: ActionUnionType): i
                 error: action.maxNumber <= action.minNumber || action.minNumber < 0,
                 errorMessage: state.errorMessage = "Ошибка ввода"
             }
+        case ON_CHANGE_MAX_VALUE:
+            return {
+                ...state,
+                valueSettings: state.valueSettings = Number(action.e),
+                error: state.error = true,
+                errorMessage: state.errorMessage = 'Введите значение'
+            }
         default:
             return state
     }
@@ -76,5 +91,11 @@ export const changeValueAC = (minNumber: number, maxNumber: number): ChangeValue
         type: 'CHANGE-VALUE',
         minNumber,
         maxNumber,
+    }
+}
+export const onChangeMaxValueAC = ( e: ChangeEvent<HTMLInputElement>): OnChangeMaxValueAT => {
+    return {
+        type: 'ON_CHANGE_MAX_VALUE',
+        e:e,
     }
 }
