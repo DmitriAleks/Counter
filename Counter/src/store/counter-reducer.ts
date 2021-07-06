@@ -21,7 +21,7 @@ type ChangeValueAT = {
 }
 type OnChangeMaxValueAT = {
     type: 'ON_CHANGE_MAX_VALUE'
-    e: ChangeEvent<HTMLInputElement>
+    e: number
 }
 type OnChangeMinValueAT = {
     type: 'ON_CHANGE_MIN_VALUE'
@@ -42,7 +42,7 @@ export type initialStateType = {
 
 export let initialState: initialStateType = {
     startValue: 0,
-    valueSettings: 1,
+    valueSettings: 5,
     numberTable: 0,
     errorMessage: '',
     statusInc: false,
@@ -105,7 +105,7 @@ export const changeValueAC = (minNumber: number, maxNumber: number): ChangeValue
         maxNumber,
     }
 }
-export const onChangeMaxValueAC = ( e: ChangeEvent<HTMLInputElement> ): OnChangeMaxValueAT => {
+export const onChangeMaxValueAC = ( e: number ): OnChangeMaxValueAT => {
     return {
         type: 'ON_CHANGE_MAX_VALUE',
         e:e,

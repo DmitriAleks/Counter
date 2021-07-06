@@ -6,7 +6,6 @@ import s from '../../Components/Counter/Buttons/Button.module.css'
 
 type SettingsType = {
     maxValue: number
-    setValueSettings: any
     startValue: number
     setStartValue: any
     error: boolean

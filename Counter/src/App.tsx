@@ -107,7 +107,6 @@ function App() {
         <div className="App">
             <Settings
                       maxValue={valueSettings}//максим значение в ипуты
-                      setValueSettings={setValueSettings}//функция хука по смене макс значения
                       startValue={startValue}//миним значение в ипуты
                       setStartValue={setStartValue}//функция хука по смене мин значения
                       error={error}
