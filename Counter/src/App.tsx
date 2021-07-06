@@ -108,13 +108,11 @@ function App() {
             <Settings
                       maxValue={valueSettings}//максим значение в ипуты
                       startValue={startValue}//миним значение в ипуты
-                      setStartValue={setStartValue}//функция хука по смене мин значения
                       error={error}
                       errorSetButton={errorSetButton}
                       onChangeMaxValue={onChangeMaxValue}
                       onChangeMinValue={onChangeMinValue}
                       setNewMaxMinValue={setNewMaxMinValue}
-                      setErrorSetButton={setErrorSetButton}
             />
 
             <CounterTest

@@ -25,7 +25,7 @@ type OnChangeMaxValueAT = {
 }
 type OnChangeMinValueAT = {
     type: 'ON_CHANGE_MIN_VALUE'
-    e: ChangeEvent<HTMLInputElement>
+    e: number
 }
 
 
@@ -56,7 +56,7 @@ export const counterReducer = (state = initialState, action: ActionUnionType): i
         case ADD_PLUS_NUMBER:
             return {
                 ...state,
-                numberTable: state.numberTable + 1,
+                startValue: state.startValue + 1,
                 statusInc: state.numberTable >= state.valueSettings
             }
         case UPDATE_NUMBER:
@@ -111,7 +111,7 @@ export const onChangeMaxValueAC = ( e: number ): OnChangeMaxValueAT => {
         e:e,
     }
 }
-export const onChangeMinValueAC = ( e: ChangeEvent<HTMLInputElement> ): OnChangeMinValueAT => {
+export const onChangeMinValueAC = ( e: number ): OnChangeMinValueAT => {
     return {
         type: 'ON_CHANGE_MIN_VALUE',
         e:e,

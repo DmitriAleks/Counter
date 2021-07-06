@@ -7,13 +7,11 @@ import s from '../../Components/Counter/Buttons/Button.module.css'
 type SettingsType = {
     maxValue: number
     startValue: number
-    setStartValue: any
     error: boolean
     errorSetButton: boolean
     onChangeMaxValue:(e: ChangeEvent<HTMLInputElement>)=> void
     onChangeMinValue:(e: ChangeEvent<HTMLInputElement>)=> void
     setNewMaxMinValue:()=>void
-    setErrorSetButton:any
 }
 
 function Settings(props: SettingsType) {

@@ -3,32 +3,48 @@ import {useDispatch, useSelector} from 'react-redux';
 import './App.css';
 import CounterTest from './Components/Counter/CounterTest';
 import Settings from "./Components/Settings/Settings";
-import {addPlusNumberAC, changeValueAC, onChangeMaxValueAC} from './store/counter-reducer';
+import {
+    addPlusNumberAC,
+    changeValueAC,
+    onChangeMaxValueAC,
+    onChangeMinValueAC,
+    updateNumberAC
+} from './store/counter-reducer';
 import {AppRootStateType} from "./store/store";
 
 
 function AppWithReducer() {
 
 const valueSettings= useSelector<AppRootStateType,number> (
-    state=> state.counter.valueSettings
-)
+    state=> state.counter.valueSettings)
     // let [valueSettings, setValueSettings] = useState<number>(11)//стартовые значения, обновляются с помощию функции
-
-    let [startValue, setStartValue] = useState<number>(1)//стартовые значения, обновляются с помощию функции
-    let [errorMessage, setErrorMessage] = useState<string>('')//текс ошибки либо предупреждения закончит ввод данных
-    let [numberTable, setNumberTable] = useState<number>(startValue)// стейт в котором храним отбражающее число в счетчике
-    let [statusInc, setNewStatusInc] = useState<boolean>(false)//стейт в котором храним статус кнопки
-    let [error, setError] = useState<boolean>(false)//булевый стейт, контролируем ошибки
-    let [errorSetButton, setErrorSetButton] = useState<boolean>(false)//булевый стейт, контролируем set button
+    const startValue= useSelector<AppRootStateType,number> (
+        state=> state.counter.startValue)
+   // let [startValue, setStartValue] = useState<number>(1)//стартовые значения, обновляются с помощию функции
+    const errorMessage= useSelector<AppRootStateType,string> (
+        state=> state.counter.errorMessage)
+   // let [errorMessage, setErrorMessage] = useState<string>('')//текс ошибки либо предупреждения закончит ввод данных
+    const numberTable= useSelector<AppRootStateType,number> (
+        state=> state.counter.numberTable)
+  //  let [numberTable, setNumberTable] = useState<number>(startValue)// стейт в котором храним отбражающее число в счетчике
+    const statusInc= useSelector<AppRootStateType,boolean> (
+        state=> state.counter.statusInc)
+   // let [statusInc, setNewStatusInc] = useState<boolean>(false)//стейт в котором храним статус кнопки
+    const error= useSelector<AppRootStateType,boolean> (
+        state=> state.counter.error)
+    //let [error, setError] = useState<boolean>(false)//булевый стейт, контролируем ошибки
+    const errorSetButton= useSelector<AppRootStateType,boolean> (
+        state=> state.counter.errorSetButton)
+   // let [errorSetButton, setErrorSetButton] = useState<boolean>(false)//булевый стейт, контролируем set button
     const dispatch = useDispatch()
     ///...........................................LocalStorage......................//
-    useEffect(() => {
-        let valueAsString = localStorage.getItem('counterValueMin')
-        if (valueAsString) {
-            let newValue = JSON.parse(valueAsString)
-            setStartValue(newValue)
-        }
-    }, [])
+    // useEffect(() => {//отключен с переходм на редакс
+    //     let valueAsString = localStorage.getItem('counterValueMin')
+    //     if (valueAsString) {
+    //         let newValue = JSON.parse(valueAsString)
+    //         setStartValue(newValue)
+    //     }
+    // }, [])
     useEffect(() => {
         localStorage.setItem('counterValueMin', JSON.stringify(startValue))
     }, [startValue])
@@ -54,10 +70,7 @@ const valueSettings= useSelector<AppRootStateType,number> (
     dispatch(onChangeMaxValueAC(Number(e)))
     }
     const onChangeMinValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
-       setStartValue(Number(e.currentTarget.value))
-        setError(true)
-        setErrorMessage('Введите значение')
-       // controlError(valueSettings,startValue)
+        dispatch(onChangeMinValueAC(Number(e)))
     }
     const setNewMaxMinValue = () => {//функция передаём значения на вверх
         ChangeValue(startValue, valueSettings)
@@ -73,45 +86,42 @@ const valueSettings= useSelector<AppRootStateType,number> (
     //     }
     // }
 
-    useEffect(() => { // следит за сохранием числа в табле, после обновления
-        setNumberTable(startValue)
-    }, [startValue])
+    // useEffect(() => { // следит за сохранием числа в табле, после обновления // отключен с переходм на редакс
+    //     setNumberTable(startValue)
+    // }, [startValue])
 
     // useEffect(() => { // тест
     //     controlError( valueSettings, startValue)
     // }, [startValue,valueSettings])
 
     function addPlusNumber() {//функция по увеличения числа в счетчике
-        console.log('click')
+        console.log(valueSettings)
        dispatch(addPlusNumberAC())
 
     }
 
     function updateNumber() {//функция по сбрасыванию числа
-        setNumberTable(startValue)//сбрасывание стейта на минимальное значение
-        statusButtonInc(startValue);//сбрасываем дизейбл с добавлния
+        dispatch(updateNumberAC())
     }
 
-    function statusButtonInc(numberTable: number) {//фукнция по изменению статуса кнопки (Дизейбл)
-        if (numberTable >= valueSettings) {//проверка на дизейбл, если число равно максим, кнопка дизейблится
-            return setNewStatusInc(true)
-        } else {
-            return setNewStatusInc(false)
-        }
-    }
+    // function statusButtonInc(numberTable: number) {//фукнция по изменению статуса кнопки (Дизейбл)
+    //     if (numberTable >= valueSettings) {//проверка на дизейбл, если число равно максим, кнопка дизейблится
+    //         return setNewStatusInc(true)
+    //     } else {
+    //         return setNewStatusInc(false)
+    //     }
+    // }
 
     return (
         <div className="App">
             <Settings
                       maxValue={valueSettings}//максим значение в ипуты
                       startValue={startValue}//миним значение в ипуты
-                      setStartValue={setStartValue}//функция хука по смене мин значения
                       error={error}
                       errorSetButton={errorSetButton}
                       onChangeMaxValue={onChangeMaxValue}
                       onChangeMinValue={onChangeMinValue}
                       setNewMaxMinValue={setNewMaxMinValue}
-                      setErrorSetButton={setErrorSetButton}
             />
 
             <CounterTest
