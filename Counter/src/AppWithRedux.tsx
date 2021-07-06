@@ -13,7 +13,7 @@ import {
 import {AppRootStateType} from "./store/store";
 
 
-function AppWithReducer() {
+function AppWithRedux() {
 
 const valueSettings= useSelector<AppRootStateType,number> (
     state=> state.counter.valueSettings)
@@ -67,10 +67,10 @@ const valueSettings= useSelector<AppRootStateType,number> (
     // }, [startValue,valueSettings])
     //////                                    Функции Settings                      ///////
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(onChangeMaxValueAC(Number(e)))
+    dispatch(onChangeMaxValueAC(Number(e.currentTarget.value)))
     }
     const onChangeMinValue = (e: ChangeEvent<HTMLInputElement>) => {//функции для изменения значений
-        dispatch(onChangeMinValueAC(Number(e)))
+        dispatch(onChangeMinValueAC(Number(e.currentTarget.value)))
     }
     const setNewMaxMinValue = () => {//функция передаём значения на вверх
         ChangeValue(startValue, valueSettings)
@@ -138,4 +138,4 @@ const valueSettings= useSelector<AppRootStateType,number> (
     );
 }
 
-export default AppWithReducer;
+export default AppWithRedux;

@@ -56,8 +56,8 @@ export const counterReducer = (state = initialState, action: ActionUnionType): i
         case ADD_PLUS_NUMBER:
             return {
                 ...state,
-                startValue: state.startValue + 1,
-                statusInc: state.numberTable >= state.valueSettings
+                numberTable: state.numberTable + 1,
+                statusInc: state.numberTable >= state.valueSettings -1
             }
         case UPDATE_NUMBER:
             return {
