@@ -38,9 +38,9 @@ function AppWithRedux() {
     //         setStartValue(newValue)
     //     }
     // }, [])
-    useEffect(() => {
-        localStorage.setItem('counterValueMin', JSON.stringify(startMinValue))
-    }, [startMinValue])
+    // useEffect(() => {
+    //     localStorage.setItem('counterValueMin', JSON.stringify(startMinValue))
+    // }, [startMinValue])
     // useEffect(() => {// отключено с переходом на редакс
     //     let valueAsString = localStorage.getItem('counterValueMax')
     //     if (valueAsString) {
@@ -49,9 +49,9 @@ function AppWithRedux() {
     //     }
     // }, [])
 
-    useEffect(() => {
-        localStorage.setItem('counterValueMax', JSON.stringify(startMaxValue))
-    }, [startMaxValue])
+    // useEffect(() => {
+    //     localStorage.setItem('counterValueMax', JSON.stringify(startMaxValue))
+    // }, [startMaxValue])
     const ChangeValue = (minNumber: number, maxNumber: number) => {//функция обновляющая, стартовые значения
         dispatch(changeValueAC(minNumber, maxNumber))
     }

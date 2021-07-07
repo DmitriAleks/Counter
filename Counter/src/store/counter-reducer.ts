@@ -29,18 +29,17 @@ type OnChangeMinValueAT = {
 }
 
 
-export type initialStateType = {
-    startMinValue: number,
-    startMaxValue: number,
-    currentNumber: number,
-    errorMessage: string,
-    statusInc: boolean,
-    error: boolean,
-    errorSetButton: boolean,
-
-}
-
-export let initialState: initialStateType = {
+// export type initialStateType = {
+//     startMinValue: number,
+//     startMaxValue: number,
+//     currentNumber: number,
+//     errorMessage: string,
+//     statusInc: boolean,
+//     error: boolean,
+//     errorSetButton: boolean,
+//
+// }
+export let initialState = {
     startMinValue: 0,
     startMaxValue: 5,
     currentNumber: 0,
@@ -49,6 +48,8 @@ export let initialState: initialStateType = {
     error: false,
     errorSetButton: false,
 }
+export type initialStateType = typeof initialState
+
 
 
 export const counterReducer = (state = initialState, action: ActionUnionType): initialStateType => {
