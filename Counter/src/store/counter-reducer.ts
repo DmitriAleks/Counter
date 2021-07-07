@@ -30,9 +30,9 @@ type OnChangeMinValueAT = {
 
 
 export type initialStateType = {
-    startValue: number,
-    valueSettings: number,
-    numberTable: number,
+    startMinValue: number,
+    startMaxValue: number,
+    currentNumber: number,
     errorMessage: string,
     statusInc: boolean,
     error: boolean,
@@ -41,9 +41,9 @@ export type initialStateType = {
 }
 
 export let initialState: initialStateType = {
-    startValue: 0,
-    valueSettings: 5,
-    numberTable: 0,
+    startMinValue: 0,
+    startMaxValue: 5,
+    currentNumber: 0,
     errorMessage: '',
     statusInc: false,
     error: false,
@@ -56,35 +56,35 @@ export const counterReducer = (state = initialState, action: ActionUnionType): i
         case ADD_PLUS_NUMBER:
             return {
                 ...state,
-                numberTable: state.numberTable + 1,
-                statusInc: state.numberTable >= state.valueSettings -1
+                currentNumber: state.currentNumber + 1,
+                statusInc: state.currentNumber >= state.startMaxValue -1
             }
         case UPDATE_NUMBER:
             return {
                 ...state,
-                numberTable: state.numberTable = state.startValue,
+                currentNumber: state.currentNumber = state.startMinValue,
                 statusInc: state.statusInc = false
             }
         case CHANGE_VALUE:
             return {
                 ...state,
-                startValue: state.startValue = action.minNumber,
-                valueSettings: state.valueSettings = action.maxNumber,
-                numberTable: state.numberTable = action.minNumber,
+                startMinValue: state.startMinValue = action.minNumber,
+                startMaxValue: state.startMaxValue = action.maxNumber,
+                currentNumber: state.currentNumber = action.minNumber,
                 error: action.maxNumber <= action.minNumber || action.minNumber < 0,
                 errorMessage: state.errorMessage = "Ошибка ввода"
             }
         case ON_CHANGE_MAX_VALUE:
             return {
                 ...state,
-                valueSettings: state.valueSettings = Number(action.e),
+                startMaxValue: state.startMaxValue = Number(action.e),
                 error: state.error = true,
                 errorMessage: state.errorMessage = 'Введите значение',
             }
         case ON_CHANGE_MIN_VALUE:
             return {
                 ...state,
-                startValue: state.startValue = Number(action.e),
+                startMinValue: state.startMinValue = Number(action.e),
                 error: state.error = true,
                 errorMessage: state.errorMessage = 'Введите значение',
             }
