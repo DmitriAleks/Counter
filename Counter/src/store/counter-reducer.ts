@@ -1,12 +1,10 @@
-import {ChangeEvent} from "react";
-
 const ADD_PLUS_NUMBER = 'ADD-PLUS-NUMBER'
 const UPDATE_NUMBER = 'UPDATE-NUMBER'
 const CHANGE_VALUE = 'CHANGE-VALUE'
 const ON_CHANGE_MAX_VALUE = 'ON_CHANGE_MAX_VALUE'
 const ON_CHANGE_MIN_VALUE = 'ON_CHANGE_MIN_VALUE'
 
-type ActionUnionType = RemoveTaskAT | UpdateNumberAT | ChangeValueAT|OnChangeMaxValueAT|OnChangeMinValueAT
+type ActionUnionType = RemoveTaskAT | UpdateNumberAT | ChangeValueAT | OnChangeMaxValueAT | OnChangeMinValueAT
 
 type RemoveTaskAT = {
     type: 'ADD-PLUS-NUMBER',
@@ -21,24 +19,14 @@ type ChangeValueAT = {
 }
 type OnChangeMaxValueAT = {
     type: 'ON_CHANGE_MAX_VALUE'
-    e: number
+    newMaxValue: number
 }
 type OnChangeMinValueAT = {
     type: 'ON_CHANGE_MIN_VALUE'
-    e: number
+    newMinValue: number
 }
 
 
-// export type initialStateType = {
-//     startMinValue: number,
-//     startMaxValue: number,
-//     currentNumber: number,
-//     errorMessage: string,
-//     statusInc: boolean,
-//     error: boolean,
-//     errorSetButton: boolean,
-//
-// }
 export let initialState = {
     startMinValue: 0,
     startMaxValue: 5,
@@ -51,14 +39,13 @@ export let initialState = {
 export type initialStateType = typeof initialState
 
 
-
 export const counterReducer = (state = initialState, action: ActionUnionType): initialStateType => {
     switch (action.type) {
         case ADD_PLUS_NUMBER:
             return {
                 ...state,
                 currentNumber: state.currentNumber + 1,
-                statusInc: state.currentNumber >= state.startMaxValue -1
+                statusInc: state.currentNumber >= state.startMaxValue - 1
             }
         case UPDATE_NUMBER:
             return {
@@ -78,14 +65,14 @@ export const counterReducer = (state = initialState, action: ActionUnionType): i
         case ON_CHANGE_MAX_VALUE:
             return {
                 ...state,
-                startMaxValue: state.startMaxValue = Number(action.e),
+                startMaxValue: state.startMaxValue = Number(action.newMaxValue),
                 error: state.error = true,
                 errorMessage: state.errorMessage = 'Введите значение',
             }
         case ON_CHANGE_MIN_VALUE:
             return {
                 ...state,
-                startMinValue: state.startMinValue = Number(action.e),
+                startMinValue: state.startMinValue = Number(action.newMinValue),
                 error: state.error = true,
                 errorMessage: state.errorMessage = 'Введите значение',
             }
@@ -106,15 +93,15 @@ export const changeValueAC = (minNumber: number, maxNumber: number): ChangeValue
         maxNumber,
     }
 }
-export const onChangeMaxValueAC = ( e: number ): OnChangeMaxValueAT => {
+export const onChangeMaxValueAC = (newMaxValue: number): OnChangeMaxValueAT => {
     return {
         type: 'ON_CHANGE_MAX_VALUE',
-        e:e,
+        newMaxValue,
     }
 }
-export const onChangeMinValueAC = ( e: number ): OnChangeMinValueAT => {
+export const onChangeMinValueAC = (newMinValue: number): OnChangeMinValueAT => {
     return {
         type: 'ON_CHANGE_MIN_VALUE',
-        e:e,
+        newMinValue,
     }
 }

@@ -9,9 +9,9 @@ type SettingsType = {
     startValue: number
     error: boolean
     errorSetButton: boolean
-    onChangeMaxValue:(e: ChangeEvent<HTMLInputElement>)=> void
-    onChangeMinValue:(e: ChangeEvent<HTMLInputElement>)=> void
-    setNewMaxMinValue:()=>void
+    onChangeMaxValue: (e: ChangeEvent<HTMLInputElement>) => void
+    onChangeMinValue: (e: ChangeEvent<HTMLInputElement>) => void
+    setNewMaxMinValue: () => void
 }
 
 function Settings(props: SettingsType) {
@@ -30,7 +30,7 @@ function Settings(props: SettingsType) {
             </div>
             <div className='corpsTableSettings'>
                 <div className={s.button}>
-                    <ButtonAll  activity={props.setNewMaxMinValue} nameButton={"set"} error={false}/>
+                    <ButtonAll activity={props.setNewMaxMinValue} nameButton={"set"} error={false}/>
                 </div>
             </div>
         </div>

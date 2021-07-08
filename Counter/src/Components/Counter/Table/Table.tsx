@@ -5,9 +5,8 @@ type TypeTable = {
     numberTable: number
     valueSettings: number
     error: boolean
-    errorMessage:string
+    errorMessage: string
 }
-
 
 
 function Table(props: TypeTable) {
