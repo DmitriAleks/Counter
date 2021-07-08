@@ -1,28 +1,31 @@
-const ADD_PLUS_NUMBER = 'ADD-PLUS-NUMBER'
-const UPDATE_NUMBER = 'UPDATE-NUMBER'
-const CHANGE_VALUE = 'CHANGE-VALUE'
-const ON_CHANGE_MAX_VALUE = 'ON_CHANGE_MAX_VALUE'
-const ON_CHANGE_MIN_VALUE = 'ON_CHANGE_MIN_VALUE'
+export enum ACTIONS_TYPE {
+    ADD_PLUS_NUMBER = 'ADD-PLUS-NUMBER',
+    UPDATE_NUMBER = 'UPDATE-NUMBER',
+    CHANGE_VALUE = 'CHANGE-VALUE',
+    ON_CHANGE_MAX_VALUE = 'ON_CHANGE_MAX_VALUE',
+    ON_CHANGE_MIN_VALUE = 'ON_CHANGE_MIN_VALUE',
+}
+
 
 type ActionUnionType = RemoveTaskAT | UpdateNumberAT | ChangeValueAT | OnChangeMaxValueAT | OnChangeMinValueAT
 
 type RemoveTaskAT = {
-    type: 'ADD-PLUS-NUMBER',
+    type: ACTIONS_TYPE.ADD_PLUS_NUMBER,
 }
 type UpdateNumberAT = {
-    type: 'UPDATE-NUMBER',
+    type: ACTIONS_TYPE.UPDATE_NUMBER,
 }
 type ChangeValueAT = {
-    type: 'CHANGE-VALUE',
+    type: ACTIONS_TYPE.CHANGE_VALUE,
     minNumber: number,
     maxNumber: number,
 }
 type OnChangeMaxValueAT = {
-    type: 'ON_CHANGE_MAX_VALUE'
+    type: ACTIONS_TYPE.ON_CHANGE_MAX_VALUE,
     newMaxValue: number
 }
 type OnChangeMinValueAT = {
-    type: 'ON_CHANGE_MIN_VALUE'
+    type: ACTIONS_TYPE.ON_CHANGE_MIN_VALUE,
     newMinValue: number
 }
 
@@ -41,35 +44,33 @@ export type initialStateType = typeof initialState
 
 export const counterReducer = (state = initialState, action: ActionUnionType): initialStateType => {
     switch (action.type) {
-        case ADD_PLUS_NUMBER:
+        case ACTIONS_TYPE.ADD_PLUS_NUMBER:
             return {
                 ...state,
                 currentNumber: state.currentNumber + 1,
                 statusInc: state.currentNumber >= state.startMaxValue - 1
             }
-        case UPDATE_NUMBER:
+        case ACTIONS_TYPE.UPDATE_NUMBER:
             return {
                 ...state,
                 currentNumber: state.currentNumber = state.startMinValue,
                 statusInc: state.statusInc = false
             }
-        case CHANGE_VALUE:
+        case ACTIONS_TYPE.CHANGE_VALUE:
             return {
                 ...state,
-                startMinValue: state.startMinValue = action.minNumber,
-                startMaxValue: state.startMaxValue = action.maxNumber,
                 currentNumber: state.currentNumber = action.minNumber,
                 error: action.maxNumber <= action.minNumber || action.minNumber < 0,
                 errorMessage: state.errorMessage = "Ошибка ввода"
             }
-        case ON_CHANGE_MAX_VALUE:
+        case ACTIONS_TYPE.ON_CHANGE_MAX_VALUE:
             return {
                 ...state,
                 startMaxValue: state.startMaxValue = Number(action.newMaxValue),
                 error: state.error = true,
                 errorMessage: state.errorMessage = 'Введите значение',
             }
-        case ON_CHANGE_MIN_VALUE:
+        case ACTIONS_TYPE.ON_CHANGE_MIN_VALUE:
             return {
                 ...state,
                 startMinValue: state.startMinValue = Number(action.newMinValue),
@@ -81,27 +82,27 @@ export const counterReducer = (state = initialState, action: ActionUnionType): i
     }
 }
 export const addPlusNumberAC = (): RemoveTaskAT => {
-    return {type: 'ADD-PLUS-NUMBER'}
+    return {type: ACTIONS_TYPE.ADD_PLUS_NUMBER}
 }
 export const updateNumberAC = (): UpdateNumberAT => {
-    return {type: 'UPDATE-NUMBER'}
+    return {type: ACTIONS_TYPE.UPDATE_NUMBER}
 }
 export const changeValueAC = (minNumber: number, maxNumber: number): ChangeValueAT => {
     return {
-        type: 'CHANGE-VALUE',
+        type: ACTIONS_TYPE.CHANGE_VALUE,
         minNumber,
         maxNumber,
     }
 }
 export const onChangeMaxValueAC = (newMaxValue: number): OnChangeMaxValueAT => {
     return {
-        type: 'ON_CHANGE_MAX_VALUE',
+        type: ACTIONS_TYPE.ON_CHANGE_MAX_VALUE,
         newMaxValue,
     }
 }
 export const onChangeMinValueAC = (newMinValue: number): OnChangeMinValueAT => {
     return {
-        type: 'ON_CHANGE_MIN_VALUE',
+        type: ACTIONS_TYPE.ON_CHANGE_MIN_VALUE,
         newMinValue,
     }
 }
