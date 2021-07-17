@@ -15,14 +15,7 @@ type SettingsType = {
 }
 
 function Settings(props: SettingsType) {
-    const [er, setEr]= useState<boolean>(false)
-    const checkError = () => {
-        if(props.maxValue <= props.startValue){
-            setEr(true)
-        } else {
-            setEr(false)
-        }
-    }
+
 
     return (
         <div className="corpsSettings">

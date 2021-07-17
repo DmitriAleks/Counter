@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import s from './RangeNumber.module.css'
 
 type RangeNumberType = {
@@ -10,7 +10,14 @@ type RangeNumberType = {
 }
 
 function RangeNumber(props: RangeNumberType) {
-    console.log(props.maxValue)
+    const [er, setEr]= useState<boolean>(false)
+    const checkError = () => {
+        if(props.maxValue <= props.startValue){
+            setEr(true)
+        } else {
+            setEr(false)
+        }
+    }
     return (
     (props.error) ? <div className={s.global}>
             <span>Максим значен<input type="number"  className={s.error} value={props.maxValue} onChange={props.onChangeMaxValue}/></span>
