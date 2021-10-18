@@ -5,7 +5,7 @@ export enum ACTIONS_TYPE {
     ON_CHANGE_MAX_VALUE = 'ON_CHANGE_MAX_VALUE',
     ON_CHANGE_MIN_VALUE = 'ON_CHANGE_MIN_VALUE',
 }
-//as as//
+
 
 type ActionUnionType = RemoveTaskAT | UpdateNumberAT | ChangeValueAT | OnChangeMaxValueAT | OnChangeMinValueAT
 
@@ -38,7 +38,6 @@ export let initialState = {
     statusInc: false,
     error: false,
     errorSetButton: false,
-    controlSettings: false,
 }
 export type initialStateType = typeof initialState
 

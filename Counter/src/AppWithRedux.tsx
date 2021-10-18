@@ -28,8 +28,6 @@ function AppWithRedux() {
         state => state.counter.error)
     const errorSetButton = useSelector<AppRootStateType, boolean>(//булевый стейт, контролируем set button
         state => state.counter.errorSetButton)
-    const controlSettings = useSelector<AppRootStateType, boolean>(
-        state => state.counter.controlSettings)
     const dispatch = useDispatch()
 
     const ChangeValue = (minNumber: number, maxNumber: number) => {//функция обновляющая, стартовые значения
@@ -64,7 +62,6 @@ function AppWithRedux() {
                 onChangeMaxValue={onChangeMaxValue}
                 onChangeMinValue={onChangeMinValue}
                 setNewMaxMinValue={setNewMaxMinValue}
-                controlSettings={controlSettings}
             />
 
             <CounterTest
